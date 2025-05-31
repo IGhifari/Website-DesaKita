@@ -5,13 +5,13 @@ function LoginUser() {
   const [role, setRole] = useState('kepala-desa');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const dashboard = role === 'kepala-desa' ? '/dashboard-admin' : '/dashboard-rumah';
   return (
     <div className="min-h-screen flex items-center justify-center bg-green-50">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
         <div className="text-center mb-6">
           <img src={LogoDesa} alt="DesaKita" className="mx-auto h-20 mb-2" />
-          <h1 className="text-xl font-bold text-gray-800">
+          <h1 className="font text-xl font-bold text-gray-800">
             Halo👋🏻, Selamat Datang!
           </h1>
           <p className="text-sm text-gray-500">Silahkan masuk untuk melanjutkan</p>
@@ -28,7 +28,7 @@ function LoginUser() {
             onClick={() => setRole('kepala-desa')}
           >
             <div className="flex items-center justify-center gap-1">
-              <FaCrown className="text-sm" /> Kepala Desa
+              Kepala Desa <FaCrown className="text-sm" /> 
             </div>
           </button>
           <button
@@ -45,7 +45,8 @@ function LoginUser() {
           </button>
         </div>
 
-        {/* Email Input */}
+        <form action="">
+
         <div className="mb-4">
           <label className="text-sm text-gray-600">Email Address</label>
           <div className="relative">
@@ -82,10 +83,11 @@ function LoginUser() {
         {/* Submit Button */}
         <button
           className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition duration-300"
-          onClick={() => console.log({ email, password, role })}
+          onClick={dashboard ? () => window.location.href = dashboard : null}
         >
           Masuk
         </button>
+        </form>
       </div>
     </div>
   );
